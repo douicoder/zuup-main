@@ -118,7 +118,7 @@ const Empower = () => {
             transition={{ duration: 1, delay: 0.8 }}
             className="text-xl md:text-3xl text-muted-foreground font-medium max-w-4xl leading-relaxed mx-auto"
           >
-            Zuup is a teen-led NPO. We don't believe in charity — we believe in capability. We bridge the gap between underprivileged communities and the digital economy through skill development, mentorship, and real opportunities.
+            Zuup isn't your average "teen-led NGO". We are a movement that forces young people to build incredibly cool tech. We don't believe in charity — we believe in capability. We bridge the gap between underprivileged communities and the digital economy through skill development, mentorship, and real opportunities.
           </motion.p>
 
           <motion.div 

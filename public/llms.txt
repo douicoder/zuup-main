@@ -1,6 +1,6 @@
-# Zuup — Teen-Led NPO Empowering Youth with Digital Skills
+# Zuup — A Movement Building Real Engineering & Cool Tech
 
-> Zuup (zuup.dev) is a teen-led nonprofit organization that trains underprivileged youth in graphic design, video editing, coding, and freelancing. Zuup believes in empowerment over charity — building capability, not dependency.
+> Zuup (zuup.dev) is a movement that forces young people to build incredibly cool tech, train in graphic design, video editing, coding, and freelancing. Zuup believes in empowerment over charity — building capability, not dependency.
 
 ## About Zuup
 
