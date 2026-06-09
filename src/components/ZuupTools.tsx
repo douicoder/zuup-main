@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code, Timer, Terminal, BarChart3, Share2, Cloud, Shield, Zap, Globe, ChevronRight, ExternalLink } from "lucide-react";
+import { Code, Timer, Terminal, BarChart3, Share2, Cloud, Shield, Zap, Globe, ChevronRight, ExternalLink, ArrowUpRight } from "lucide-react";
 import zuupCodeImg from "@/assets/zuupcode-screenshot.png";
 import zuupTimeImg from "@/assets/zuuptime-screenshot.png";
 
@@ -21,6 +21,23 @@ const fade = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5 } }),
 };
+
+const ecosystemApps = [
+  { name: "Zuup Theme", url: "https://theme.zuup.dev/" },
+  { name: "Zuup Giza", url: "https://giza.zuup.dev/" },
+  { name: "Zuup Time", url: "https://time.zuup.dev/" },
+  { name: "Zuup Counseling", url: "https://counseling.zuup.dev/" },
+  { name: "Zuup Validate", url: "https://validate.zuup.dev/" },
+  { name: "Zuup Workshops", url: "https://workshops.zuup.dev/" },
+  { name: "Zuup People", url: "https://people.zuup.dev/" },
+  { name: "Zuup Mail", url: "https://mail.zuup.dev/" },
+];
+
+const communityLinks = [
+  { name: "User Dashboard", url: "https://dashboard.zuup.dev/profile" },
+  { name: "Slack Community", url: "https://faraway.zuup.dev/slack" },
+  { name: "Open Source (GitHub)", url: "https://github.com/jagrit0711" },
+];
 
 const ZuupTools = () => {
   return (
@@ -63,18 +80,18 @@ const ZuupTools = () => {
                   className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.02]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </div>
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <Code size={20} className="text-primary" />
-                    <span className="text-xs font-semibold uppercase tracking-widest text-primary">Browser IDE</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary bg-white px-2 py-1 rounded">Browser IDE</span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground">ZuupCode</h3>
-                  <p className="text-muted-foreground text-sm mt-1">Write code. Run it. Right here.</p>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">ZuupCode</h3>
+                  <p className="text-gray-300 text-sm mt-1 font-medium">Write code. Run it. Right here.</p>
                 </div>
-                <span className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/20 group-hover:opacity-90 transition-opacity">
+                <span className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-[4px_4px_0px_white] border-2 border-white group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-[2px_2px_0px_white] transition-all">
                   Open ZuupCode <ExternalLink size={14} />
                 </span>
               </div>
@@ -93,7 +110,7 @@ const ZuupTools = () => {
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
-                      className="rounded-xl bg-accent/40 p-4"
+                      className="rounded-xl bg-muted p-4 border-2 border-transparent hover:border-border transition-colors"
                     >
                       <Icon size={20} className="text-primary mb-2" />
                       <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
@@ -131,18 +148,18 @@ const ZuupTools = () => {
                   className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.02]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </div>
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <Timer size={20} className="text-primary" />
-                    <span className="text-xs font-semibold uppercase tracking-widest text-primary">Time Tracker</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary bg-white px-2 py-1 rounded">Time Tracker</span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground">ZuupTime</h3>
-                  <p className="text-muted-foreground text-sm mt-1">Track your coding time, for free.</p>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">ZuupTime</h3>
+                  <p className="text-gray-300 text-sm mt-1 font-medium">Track your coding time, for free.</p>
                 </div>
-                <span className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/20 group-hover:opacity-90 transition-opacity">
+                <span className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-[4px_4px_0px_white] border-2 border-white group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-[2px_2px_0px_white] transition-all">
                   Open ZuupTime <ExternalLink size={14} />
                 </span>
               </div>
@@ -161,7 +178,7 @@ const ZuupTools = () => {
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
-                      className="rounded-xl bg-accent/40 p-4"
+                      className="rounded-xl bg-muted p-4 border-2 border-transparent hover:border-border transition-colors"
                     >
                       <Icon size={20} className="text-primary mb-2" />
                       <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
@@ -178,6 +195,54 @@ const ZuupTools = () => {
           </div>
         </motion.div>
 
+        {/* More Ecosystem Apps */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20"
+        >
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px bg-border flex-1"></div>
+            <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">More Apps</span>
+            <div className="h-px bg-border flex-1"></div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {ecosystemApps.map((app, i) => (
+              <a
+                key={i}
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card rounded-xl p-4 flex items-center justify-between hover:bg-accent/50 transition-colors group"
+              >
+                <span className="text-sm font-medium text-foreground">{app.name}</span>
+                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px bg-border flex-1"></div>
+            <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Community & Profile</span>
+            <div className="h-px bg-border flex-1"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {communityLinks.map((link, i) => (
+              <a
+                key={i}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card-strong rounded-xl p-5 flex items-center justify-between hover:border-primary/50 transition-colors group"
+              >
+                <span className="text-sm font-semibold text-foreground">{link.name}</span>
+                <ExternalLink size={16} className="text-primary group-hover:scale-110 transition-transform" />
+              </a>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -189,7 +254,7 @@ const ZuupTools = () => {
             href="https://code.zuup.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-bold border-2 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_hsl(var(--foreground))] transition-all"
           >
             Start Coding Free <ChevronRight size={16} />
           </a>
@@ -197,7 +262,7 @@ const ZuupTools = () => {
             href="https://time.zuup.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl glass-card font-semibold text-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white font-bold text-foreground border-2 border-border shadow-[4px_4px_0px_hsl(var(--border))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_hsl(var(--border))] transition-all"
           >
             <Timer size={16} /> Track Your Time
           </a>

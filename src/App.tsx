@@ -4,22 +4,24 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { AdminAuthProvider } from "./contexts/AdminAuthContext";
-import { AdminEditorProvider } from "./contexts/AdminEditorContext";
 import Index from "./pages/Index";
 import Team from "./pages/Team";
-import Admin from "./pages/Admin";
-import AdminUpdate from "./pages/AdminUpdate";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import FamilyLoveChecker from "./pages/FamilyLoveChecker";
 import Jobs from "./pages/Jobs";
 import JobRecommendations from "./pages/JobRecommendations";
-import Blog from "./pages/Blog";
 import OurStory from "./pages/OurStory";
+import About from "./pages/About";
+import Empower from "./pages/Empower";
 import JagritSachdev from "./pages/JagritSachdev";
 import Hackathon from "./pages/Hackathon";
+import Join from "./pages/Join";
 import Gallery from "./pages/Gallery";
 import Schools from "./pages/Schools";
+import Saas from "./pages/Saas";
+import Events from "./pages/Events";
+import Moza from "./pages/Moza";
+import Privacy from "./pages/Privacy";
 import FloatingBackground from "./components/FloatingBackground";
 
 
@@ -59,35 +61,35 @@ const ViewTracker = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AdminAuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AdminEditorProvider>
-             <FloatingBackground />
-             <ViewTracker />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/adminupdate/*" element={<AdminUpdate />} />
-              <Route path="/terms" element={<TermsAndConditions />} />
-              <Route path="/family-check" element={<FamilyLoveChecker />} />
-              <Route path="/jobs" element={<Jobs />} />
-              <Route path="/job-recommendations" element={<JobRecommendations />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/our-story" element={<OurStory />} />
-              <Route path="/jagrit-sachdev" element={<JagritSachdev />} />
-              <Route path="/hackathon" element={<Hackathon />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/schools" element={<Schools />} />
-              <Route path="/apply" element={<ExternalRedirect url="https://zuup.fillout.com/CITY" />} />
-            </Routes>
-          </AdminEditorProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AdminAuthProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+         <FloatingBackground />
+         <ViewTracker />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/family-check" element={<FamilyLoveChecker />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/job-recommendations" element={<JobRecommendations />} />
+          <Route path="/our-story" element={<OurStory />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/empower" element={<Empower />} />
+          <Route path="/jagrit-sachdev" element={<JagritSachdev />} />
+          <Route path="/hackathon" element={<Hackathon />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/schools" element={<Schools />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/saas" element={<Saas />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/moza" element={<Moza />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/apply" element={<ExternalRedirect url="https://zuup.fillout.com/CITY" />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

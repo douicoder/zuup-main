@@ -2,21 +2,20 @@ import { motion } from 'framer-motion';
 import { Linkedin, User } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { useTeamMembers } from '../components/admin/team/useTeamMembers';
-import { useEffect } from 'react';
+
+const TEAM_MEMBERS = [
+  {
+    id: '1',
+    name: 'Jagrit Sachdev',
+    role: 'Founder',
+    description: 'Empowering students through technology.',
+    linkedin: '',
+    image: ''
+  }
+];
 
 const Team = () => {
-  const { teamMembers } = useTeamMembers();
-
-  // Listen for updates from admin panel
-  useEffect(() => {
-    const handleDataUpdate = () => {
-      window.location.reload();
-    };
-
-    window.addEventListener('teamDataUpdated', handleDataUpdate);
-    return () => window.removeEventListener('teamDataUpdated', handleDataUpdate);
-  }, []);
+  const teamMembers = TEAM_MEMBERS;
 
   return (
     <div className="min-h-screen bg-black">

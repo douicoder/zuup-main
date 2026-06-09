@@ -1,9 +1,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import FloatingBackground from "../components/FloatingBackground";
-import ZuupTools from "../components/ZuupTools";
+import TransparentMoza from "../components/TransparentMoza";
 import { motion } from "framer-motion";
-import { Download, Cpu, Users, Award, BookOpen, Trophy, Rocket, GraduationCap, Wrench, Globe, ChevronRight } from "lucide-react";
+import { Download, ChevronRight, ExternalLink } from "lucide-react";
 
 const fade = {
   hidden: { opacity: 0, y: 30 },
@@ -11,188 +10,152 @@ const fade = {
 };
 
 const curriculum = [
-  { months: "1–2", title: "Foundations", desc: "Electronics basics, circuit theory, breadboarding, Ohm's Law, component identification", deliverable: "Functioning LED matrix project" },
-  { months: "3–4", title: "Microcontrollers", desc: "Raspberry Pi Pico — GPIO, PWM, ADC, MicroPython, sensor interfacing", deliverable: "Temp/humidity station with OLED display" },
-  { months: "5–6", title: "Wireless + IoT", desc: "ESP32 — Wi-Fi, BLE, MQTT protocol, cloud dashboards, real-time data", deliverable: "IoT sensor dashboard visible from any browser" },
-  { months: "7", title: "PCB Design", desc: "KiCad basics, schematic capture, PCB layout, design rules, Gerber export", deliverable: "Custom PCB design sent for fabrication" },
-  { months: "8", title: "Soldering + Build", desc: "SMD/THT soldering, testing, debugging, multimeter and oscilloscope skills", deliverable: "Fully assembled and tested custom PCB" },
-  { months: "9", title: "Project Sprint", desc: "Full project ideation, bill of materials, prototype build, iteration and documentation", deliverable: "Working, documented hardware prototype" },
-  { months: "10", title: "Demo + Compete + Publish", desc: "Presentation skills, research writing, pitch prep, interschool competition entry", deliverable: "Chapter showcase + national finale entry + research submission" },
-];
-
-const kitItems = [
-  "Raspberry Pi Pico (RP2040)",
-  "ESP32 Development Board",
-  "Sensor + Module Pack (temp, humidity, PIR, OLED, servo, LEDs)",
-  "PCB + Soldering Kit",
-  "Zuup T-Shirt (chapter edition)",
-  "Enamel Badge + Official Chapter Member ID",
-  "10-Month LMS Access Code",
-];
-
-const stats = [
-  { icon: Cpu, label: "Hardware Components", value: "15+" },
-  { icon: Users, label: "Students per Chapter", value: "15–40" },
-  { icon: BookOpen, label: "Months of Curriculum", value: "10" },
-  { icon: Trophy, label: "Max Grant Value", value: "₹1,00,000" },
-];
-
-const steps = [
-  { step: "01", title: "Express Interest", desc: "Contact via jagrit@zuup.dev or zuup.dev. A Zuup representative calls within 48 hours." },
-  { step: "02", title: "Chapter Agreement", desc: "Simple one-page agreement. No multi-year lock-in. Your school is listed on the national Zuup directory." },
-  { step: "03", title: "Chapter Launch Day", desc: "Students receive hardware kits, merch, and LMS credentials. Your Zuup Chapter is officially open." },
+  { months: "1–2", title: "Foundations", desc: "Electronics basics, circuit theory, breadboarding, Ohm's Law.", deliverable: "Functioning LED matrix project" },
+  { months: "3–4", title: "Microcontrollers", desc: "Raspberry Pi Pico — GPIO, PWM, ADC, MicroPython.", deliverable: "Temp/humidity station with OLED" },
+  { months: "5–6", title: "Wireless + IoT", desc: "ESP32 — Wi-Fi, BLE, MQTT protocol, cloud dashboards.", deliverable: "IoT sensor dashboard" },
+  { months: "7", title: "PCB Design", desc: "KiCad basics, schematic capture, PCB layout, design rules.", deliverable: "Custom PCB sent for fabrication" },
+  { months: "8", title: "Build", desc: "SMD/THT soldering, testing, debugging, oscilloscopes.", deliverable: "Fully assembled custom PCB" },
+  { months: "9", title: "Project Sprint", desc: "Full project ideation, prototype build, and documentation.", deliverable: "Working hardware prototype" },
 ];
 
 const Schools = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <FloatingBackground />
+    <div className="min-h-screen bg-[#050505] relative overflow-hidden">
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-4 relative">
-        <div className="max-w-5xl mx-auto text-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-primary/10 text-primary mb-6"
-          >
-            Zuup Chapters — School Club Program
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
-          >
-            Real Engineering.{" "}
-            <span className="text-primary">Real Hardware.</span>{" "}
-            Real Futures.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            A structured 10-month engineering club that gives students guided, hands-on experience with real electronics, microcontrollers, and hardware systems. Prepared for school principals — Class 6 to 12, pan-India.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <a
-              href="mailto:jagrit@zuup.dev?subject=Zuup%20Chapters%20—%20School%20Interest"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity"
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-4 relative flex flex-col items-center justify-center text-center">
+        <motion.div 
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-10 -left-10 w-[400px] h-[400px] opacity-40 pointer-events-none hidden md:block z-0"
+        >
+          <TransparentMoza style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }} src="/mozagreeting.jpeg" alt="School Hero Moza 1" className="w-full h-full object-contain mix-blend-screen" />
+        </motion.div>
+
+        <motion.div 
+          animate={{ y: [0, 20, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-20 -right-10 w-[350px] h-[350px] opacity-30 pointer-events-none hidden lg:block z-0"
+        >
+          <TransparentMoza style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }} src="/mozateam.jpeg" alt="School Hero Moza 2" className="w-full h-full object-contain mix-blend-screen" />
+        </motion.div>
+
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="text-6xl sm:text-7xl md:text-[8rem] font-bold text-foreground leading-[0.9] mb-8 relative z-10"
+          style={{ fontFamily: "'Caveat', cursive", letterSpacing: "1px" }}
+        >
+          Real Engineering. <br/> <span className="text-primary underline decoration-wavy underline-offset-[12px]">Real Futures.</span>
+        </motion.h1>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-xl md:text-3xl text-muted-foreground font-medium max-w-4xl leading-relaxed mx-auto relative z-10"
+        >
+          A structured 10-month engineering club that gives students guided, hands-on experience with real software development, hackathons, and hardware systems.
+        </motion.p>
+      </section>
+
+      {/* Massive Stats Banner */}
+      <section className="py-12 border-y border-white/10 bg-white/5 backdrop-blur-sm relative z-10">
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+          {[
+            { label: "Hardware Components", value: "15+" },
+            { label: "Students per Chapter", value: "15–40" },
+            { label: "Months of Curriculum", value: "10" },
+            { label: "Max Grant Value", value: "₹1,00,000" },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              custom={i}
+              variants={fade}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-center px-4"
             >
-              Start a Chapter <ChevronRight size={16} />
-            </a>
-            <a
-              href="/Zuup_Chapters.pdf"
-              download
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl glass-card font-semibold text-foreground hover:bg-accent transition-colors"
-            >
-              <Download size={16} /> Download Brochure
-            </a>
-          </motion.div>
+              <p className="text-4xl md:text-5xl font-bold text-white mb-2" style={{ fontFamily: "'Caveat', cursive" }}>{s.value}</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-primary">{s.label}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 border-y border-border/50">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.div
-                key={i}
-                custom={i}
-                variants={fade}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="glass-card rounded-2xl p-6 text-center"
-              >
-                <Icon size={28} className="text-primary mx-auto mb-3" />
-                <p className="text-2xl font-bold text-foreground">{s.value}</p>
-                <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Philosophy */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
+      {/* Philosophy Block */}
+      <section className="py-24 px-4 relative z-10">
+        <motion.div 
+          animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 right-20 w-[250px] h-[250px] opacity-20 pointer-events-none hidden md:block z-0"
+        >
+          <TransparentMoza style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }} src="/mozawithmagnifiyingglass.jpeg" alt="Magnifying Glass Moza" className="w-full h-full object-contain mix-blend-screen" />
+        </motion.div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.blockquote 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card rounded-3xl p-8 sm:p-12"
+            className="text-3xl md:text-5xl font-bold text-white mb-8 leading-snug"
+            style={{ fontFamily: "'Caveat', cursive" }}
           >
-            <GraduationCap size={32} className="text-primary mb-6" />
-            <blockquote className="text-xl sm:text-2xl font-bold text-foreground mb-6 leading-snug">
-              "Teach real engineering. Ship real things. Build real futures."
-            </blockquote>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              India produces hundreds of thousands of engineering graduates every year who cannot debug a circuit, identify a capacitor, or write a line of embedded code without a tutorial. The gap begins in school.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              A student who has programmed a Raspberry Pi Pico at age 13, debugged a floating GPIO pin at age 14, designed a PCB at age 15, and contributed to a published research paper at age 16 enters college fundamentally more capable than one who has a shelf of participation certificates from pitch competitions.
-            </p>
-          </motion.div>
+            "Teach real engineering. <span className="text-primary">Ship real things.</span> Build real futures."
+          </motion.blockquote>
+          <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-medium">
+            India produces hundreds of thousands of engineering graduates every year who cannot debug a circuit or write a line of embedded code without a tutorial. <span className="text-white">The gap begins in school.</span> A student who has programmed a Raspberry Pi Pico at age 13 and shipped a full-stack app at 14 enters college fundamentally more capable.
+          </p>
         </div>
       </section>
 
-      {/* Hardware Kit */}
-      <section className="py-24 px-4 bg-accent/30">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">Personal Hardware Kit</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Every Student Keeps Their Kit</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Not the school's. Not the lab's. When the program ends, the kit goes home with the student. Ownership creates engagement that shared lab equipment never can.</p>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {kitItems.map((item, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                variants={fade}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="glass-card rounded-xl p-5 flex items-start gap-3"
-              >
-                <Wrench size={18} className="text-primary mt-0.5 shrink-0" />
-                <span className="text-foreground text-sm font-medium">{item}</span>
-              </motion.div>
-            ))}
+      {/* Hardware Kit Poster */}
+      <section className="py-12 px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-black group min-h-[500px] flex items-center">
+            <div 
+              className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-screen"
+              style={{ backgroundImage: `url(/mozacodin.jpeg)`, clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-transparent pointer-events-none" />
+            
+            <div className="relative z-10 p-6 md:p-16 max-w-2xl">
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-primary/20 text-primary mb-6 border border-primary/30">
+                Personal Hardware Kit
+              </span>
+              <h2 className="text-5xl md:text-7xl font-bold text-white mb-6" style={{ fontFamily: "'Caveat', cursive" }}>Every Student Keeps Their Kit</h2>
+              <p className="text-xl text-white/80 mb-8 font-medium">Not the school's. Not the lab's. When the program ends, the kit goes home with the student. Ownership creates engagement that shared lab equipment never can.</p>
+              
+              <ul className="space-y-3">
+                {[
+                  "Raspberry Pi Pico (RP2040)",
+                  "ESP32 Development Board",
+                  "Sensor + Module Pack (OLED, PIR, Servo)",
+                  "PCB + Soldering Kit",
+                  "Zuup T-Shirt (Chapter Edition)",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-white font-medium">
+                    <div className="w-2 h-2 rounded-full bg-primary" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Curriculum */}
-      <section className="py-24 px-4">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">10-Month Curriculum</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">From Zero to Competition-Ready</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Each month builds on the last. No module is optional. Designed based on real sessions run at Bal Bharati Public School, Rohini.</p>
-          </motion.div>
-          <div className="space-y-4">
+      {/* Curriculum Grid */}
+      <section className="py-24 px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-7xl font-bold text-white mb-4" style={{ fontFamily: "'Caveat', cursive" }}>10-Month Curriculum</h2>
+            <p className="text-xl text-muted-foreground font-medium">From zero to competition-ready. No module is optional.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {curriculum.map((c, i) => (
               <motion.div
                 key={i}
@@ -201,16 +164,14 @@ const Schools = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="glass-card rounded-2xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-[80px_1fr_1fr] gap-4 items-start"
+                className="glass-card rounded-[2rem] p-8 border border-white/10 hover:border-primary/50 transition-colors bg-white/5"
               >
-                <div className="text-primary font-bold text-lg">M {c.months}</div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">{c.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{c.desc}</p>
-                </div>
-                <div className="sm:text-right">
-                  <span className="text-xs uppercase tracking-wider text-muted-foreground">Deliverable</span>
-                  <p className="text-foreground text-sm font-medium mt-1">{c.deliverable}</p>
+                <div className="text-4xl font-bold text-primary mb-4" style={{ fontFamily: "'Caveat', cursive" }}>Month {c.months}</div>
+                <h3 className="text-2xl font-bold text-white mb-3">{c.title}</h3>
+                <p className="text-muted-foreground font-medium mb-6">{c.desc}</p>
+                <div className="mt-auto pt-6 border-t border-white/10">
+                  <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-1">Deliverable</span>
+                  <p className="text-white font-semibold">{c.deliverable}</p>
                 </div>
               </motion.div>
             ))}
@@ -218,186 +179,41 @@ const Schools = () => {
         </div>
       </section>
 
-      {/* What Schools & Students Get */}
-      <section className="py-24 px-4 bg-accent/30">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="glass-card rounded-3xl p-8"
-          >
-            <Award size={28} className="text-primary mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-5">What Your School Gets</h3>
-            <ul className="space-y-3">
-              {[
-                "Nationally recognized Zuup Chapter affiliation",
-                "Listing in Zuup's national school directory",
-                "Chapter branding materials and official signage",
-                "Monthly student progress reports",
-                "Research publications credited to your institution",
-                "Priority hosting for regional competition events",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                  <ChevronRight size={14} className="text-primary mt-0.5 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="glass-card rounded-3xl p-8"
-          >
-            <Rocket size={28} className="text-primary mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-5">What Your Students Get</h3>
-            <ul className="space-y-3">
-              {[
-                "Hardware kit they own permanently",
-                "Training from vetted, compensated engineers",
-                "10 months of structured technical curriculum",
-                "Competition experience at school, regional & national level",
-                "Research paper publishing pathway",
-                "Grant funding access up to ₹1,00,000",
-                "National Finale opportunity with sponsored travel",
-                "Zuup Alumni network and international program eligibility",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                  <ChevronRight size={14} className="text-primary mt-0.5 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </section>
+      {/* Pricing and Final CTA */}
+      <section className="py-24 px-4 relative z-10 bg-accent/20 border-t border-white/5">
+        <motion.div 
+          animate={{ y: [0, 20, 0], rotate: [0, 3, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-10 left-10 w-[300px] h-[300px] opacity-20 pointer-events-none hidden lg:block z-0"
+        >
+          <TransparentMoza style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }} src="/mozatreasure.jpeg" alt="Treasure Moza" className="w-full h-full object-contain mix-blend-screen" />
+        </motion.div>
 
-      {/* Grand Finale */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card rounded-3xl p-8 sm:p-12 text-center"
-          >
-            <Globe size={32} className="text-primary mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-foreground mb-4">The Zuup Grand Finale</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-6">
-              A national engineering showcase where top-performing students from every chapter across India compete. Judged by practicing engineers, founders, technologists, and researchers. Not a science fair — a curated engineering showcase.
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6" style={{ fontFamily: "'Caveat', cursive" }}>Transparent Pricing</h2>
+          <p className="text-2xl text-white font-bold mb-12">₹12,000/year per student <span className="text-muted-foreground font-medium text-xl block mt-2">(₹1,200/month)</span></p>
+          
+          <div className="glass-card rounded-[2rem] p-8 text-left border border-white/10 mb-16">
+            <p className="text-muted-foreground font-medium text-lg leading-relaxed text-center mb-6">
+              Covers full hardware kits, 10 months of LMS access, monthly mentor visits, competition entries, and Zuup merch. <strong className="text-white">No hidden costs. Every rupee accounted for.</strong>
             </p>
-            <div className="glass-card rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Sponsored Trip Guarantee</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                If a student qualifies for the Grand Finale, Zuup covers 100% of travel costs — flights, accommodation, meals, and local transport. No conditions.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Fee Structure */}
-      <section className="py-24 px-4 bg-accent/30">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">Transparent Pricing</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">₹1,200/month — Every Rupee Accounted For</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Annual student contribution of ₹12,000 covers hardware, mentors, LMS, competitions, and admin. No hidden costs.</p>
-          </motion.div>
-          <div className="glass-card rounded-2xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-border/50">
-                    <th className="text-left p-4 text-foreground font-semibold">Component</th>
-                    <th className="text-right p-4 text-foreground font-semibold">Value</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/30">
-                  {[
-                    ["Raspberry Pi Pico + ESP32 + Full Sensor Pack", "₹3,800"],
-                    ["PCB + Soldering Kit", "₹1,200"],
-                    ["Zuup Merch (T-shirt + Badge + ID)", "₹600"],
-                    ["10-Month LMS Access", "₹800"],
-                    ["Monthly Mentor Visits", "₹2,800"],
-                    ["Interschool Hackathon Entry", "₹800"],
-                    ["National Finale + Research + Grant Eligibility", "Included"],
-                    ["Program Operations + Admin", "₹1,000"],
-                  ].map(([component, value], i) => (
-                    <tr key={i} className="hover:bg-accent/30 transition-colors">
-                      <td className="p-4 text-muted-foreground">{component}</td>
-                      <td className="p-4 text-right text-foreground font-medium">{value}</td>
-                    </tr>
-                  ))}
-                  <tr className="bg-primary/5">
-                    <td className="p-4 text-foreground font-bold">Total per Student</td>
-                    <td className="p-4 text-right text-primary font-bold">₹12,000/year</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
-        </div>
-      </section>
 
-      <ZuupTools />
-
-      {/* How to Start */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">Get Started</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Three Steps. Two Weeks. Done.</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {steps.map((s, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                variants={fade}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="glass-card rounded-2xl p-8 text-center"
-              >
-                <span className="text-4xl font-bold text-primary/20 block mb-4">{s.step}</span>
-                <h3 className="text-lg font-bold text-foreground mb-3">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
               href="mailto:jagrit@zuup.dev?subject=Zuup%20Chapters%20—%20School%20Interest"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity"
+              className="inline-flex justify-center items-center gap-3 px-10 py-5 bg-primary text-primary-foreground font-bold text-xl rounded-2xl hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(255,61,127,0.3)] transition-all"
             >
-              Contact Us to Start <ChevronRight size={16} />
+              Start a Chapter <ChevronRight size={24} />
             </a>
             <a
               href="/Zuup_Chapters.pdf"
               download
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl glass-card font-semibold text-foreground hover:bg-accent transition-colors"
+              className="inline-flex justify-center items-center gap-3 px-10 py-5 glass-card text-white font-bold text-xl rounded-2xl hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)] transition-all border border-white/20"
             >
-              <Download size={16} /> Download Full Brochure
+              <Download size={24} /> Download Brochure
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 

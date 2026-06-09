@@ -1,129 +1,81 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+const StatItem = ({ value, label }: any) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="flex flex-col items-center"
+  >
+    <span className="text-4xl md:text-5xl font-bold text-primary mb-1" style={{ fontFamily: "'Caveat', cursive" }}>{value}</span>
+    <span className="text-xs md:text-sm font-bold text-muted-foreground uppercase tracking-widest">{label}</span>
+  </motion.div>
+);
 
 const Hero = () => {
   return (
-    <div className="relative flex items-center justify-center min-h-screen overflow-hidden bg-background">
-      {/* Subtle orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 -left-32 w-[420px] h-[420px] rounded-full bg-primary/6 blur-[120px]"
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-background pt-48 pb-16">
+      
+      {/* Soft Gradient Background Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          className="absolute top-[10%] left-[15%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute bottom-20 -right-32 w-[380px] h-[380px] rounded-full bg-secondary/6 blur-[120px]"
-          animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        <motion.div 
+          className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] bg-blue-500/10 rounded-full blur-[150px] mix-blend-screen"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          {/* Logo */}
-          <motion.div
-            className="mb-8"
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <img
-              src="/lovable-uploads/b44b8051-6117-4b37-999d-014c4c33dd13.png"
-              alt="Zuup Logo"
-              className="h-28 md:h-36 w-auto drop-shadow-lg"
-            />
-          </motion.div>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tighter text-foreground max-w-5xl">
+            What if everyone got a <span className="text-primary underline decoration-wavy decoration-primary/50 underline-offset-[8px]">chance?</span>
+          </h1>
+          
+          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-2 md:gap-6 text-lg sm:text-xl md:text-2xl font-medium text-muted-foreground mt-12 md:mt-24 mb-10 md:mb-12 tracking-tight">
+            <span>A chance to learn.</span>
+            <span className="hidden md:inline text-border">•</span>
+            <span>A chance to build.</span>
+            <span className="hidden md:inline text-border">•</span>
+            <span>A chance to earn.</span>
+          </div>
 
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-sm text-muted-foreground mb-8 font-medium"
-          >
-            <Sparkles size={14} className="text-primary" />
-            A Zylon Labs Initiative
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6 text-foreground"
-          >
-            Empowering Youth
-            <br />
-            <span className="text-primary">Through Digital Skills</span>
-          </motion.h1>
-          <p className="sr-only">Zuup (zuup.dev) is a teen-led NPO/NGO. We provide free training in graphic design, video editing, web development, and coding. Our tools include ZuupCode (code.zuup.dev) and ZuupTime (time.zuup.dev). SME Business of the Year Award Winner 2025. Empowerment over charity.</p>
-
-          {/* Sub */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10"
-          >
-            We don't believe in charity — we believe in capability. We bridge the gap
-            between underprivileged communities and the digital economy through skill
-            development, mentorship, and real opportunities.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12 md:mb-16 z-30 relative px-4 sm:px-0">
             <a
-              href="#about"
-              className="px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
+              href="/join"
+              className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground font-bold text-lg sm:text-xl rounded-xl shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.3)] hover:bg-primary/90 transition-all flex items-center justify-center gap-2"
+              style={{ fontFamily: "'Caveat', cursive", letterSpacing: "1px" }}
             >
-              Learn More
+              Join Zuup
+              <ArrowRight size={20} />
             </a>
             <a
-              href="#philosophy"
-              className="px-8 py-3.5 glass-card-strong text-foreground font-semibold rounded-xl hover:shadow-md transition-all"
+              href="#programs"
+              className="w-full sm:w-auto px-8 py-4 bg-background text-foreground font-bold text-lg sm:text-xl rounded-xl border-2 border-dashed border-foreground hover:border-solid hover:bg-foreground hover:text-background transition-all flex items-center justify-center"
+              style={{ fontFamily: "'Caveat', cursive", letterSpacing: "1px" }}
             >
-              Our Philosophy
+              Explore Programs
             </a>
-          </motion.div>
+          </div>
 
-          {/* Quote */}
-          <motion.blockquote
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            className="mt-16 max-w-lg mx-auto text-muted-foreground italic text-base border-l-2 border-primary/20 pl-4 text-left"
-          >
-            "Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime."
-          </motion.blockquote>
+          {/* Elegant Stats Section */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-12 md:gap-24 w-full max-w-3xl mx-auto pt-8 md:pt-10 border-t border-border/40 relative z-20">
+            <StatItem value="11K+" label="Total Users" />
+            <StatItem value="3K+" label="Active Builders" />
+            <StatItem value="3" label="Countries" />
+          </div>
+
         </motion.div>
       </div>
-
-      {/* Scroll */}
-      <motion.a
-        href="#about"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 text-xs font-medium"
-        >
-          <span>Scroll</span>
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.a>
     </div>
   );
 };

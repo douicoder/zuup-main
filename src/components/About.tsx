@@ -1,118 +1,106 @@
 import { motion } from "framer-motion";
-import { Users, Briefcase, GraduationCap, Globe, Heart, Zap, Shield, Target } from "lucide-react";
+import { Users, Briefcase, GraduationCap, Globe, Heart, Zap, Shield, Target, Rocket, Lightbulb, Users2 } from "lucide-react";
 
-const stats = [
-  { icon: Users, value: "500+", label: "Youth Trained" },
-  { icon: Briefcase, value: "150+", label: "Freelance Placements" },
-  { icon: GraduationCap, value: "3", label: "Skill Programs" },
-  { icon: Globe, value: "10+", label: "Partner NGOs" },
-];
-
-const values = [
+const whatWeDo = [
   {
-    icon: Heart,
-    title: "Empowerment Over Charity",
-    description: "We don't hand out fish — we teach people to fish. Every programme is designed to create self-sufficient professionals, not dependents.",
+    icon: Lightbulb,
+    title: "Workshops & Training",
+    description: "Interactive sessions on technology, entrepreneurship, design, communication, leadership, and future-ready skills.",
+  },
+  {
+    icon: Rocket,
+    title: "Cohorts & Programs",
+    description: "Highly selective programs that connect ambitious students with mentors, projects, and opportunities to accelerate their growth.",
+  },
+  {
+    icon: Users2,
+    title: "Community Building",
+    description: "A nationwide network of students, educators, professionals, and organizations working together to create meaningful impact.",
   },
   {
     icon: Zap,
-    title: "Real Skills, Real Income",
-    description: "Video editing, graphic design, coding — our trainees learn industry-ready skills and start earning within weeks of completing the programme.",
+    title: "Hackathons & Innovation",
+    description: "Supporting young innovators through challenges, competitions, and collaborative problem-solving experiences.",
   },
   {
-    icon: Shield,
-    title: "Youth-Led Movement",
-    description: "Founded by a 16-year-old, Zuup is proof that age is no barrier. Our team of young leaders understands the communities we serve.",
-  },
-  {
-    icon: Target,
-    title: "Research-Backed Approach",
-    description: "Our AI-powered skill-gap analysis, published in IJRASET, ensures every trainee gets a personalised pathway to financial independence.",
+    icon: Heart,
+    title: "Social Impact",
+    description: "Partnering with schools, NGOs, and communities to ensure learning and opportunities reach those who need them most.",
   },
 ];
 
 const About = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-medium text-foreground">
       {/* Intro */}
-      <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+      <div className="mb-20">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="glass-card rounded-3xl p-8 sm:p-12 border-4"
         >
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
-            About Zuup
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-6">
-            By Youth, For All Generations
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-8">
+            Welcome to Zuup
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            Zuup is a youth-led initiative by Zylon Labs, dedicated to empowering underprivileged youth through digital skill
-            development and freelance opportunities.
-          </p>
-          <p className="text-muted-foreground/80 leading-relaxed mb-4">
-            We partner with NGOs across India to identify talented youth who lack access
-            to digital education. Through structured training in video editing, graphic
-            design, and coding, we help them build sustainable careers in the digital
-            economy.
-          </p>
-          <p className="text-muted-foreground/80 leading-relaxed">
-            Our mission is simple: replace dependency with capability. Every person we
-            train becomes a self-sufficient digital professional who can compete in the
-            global freelance market — no handouts, no charity, just real skills and real
-            opportunities.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="grid grid-cols-2 gap-4"
-        >
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.label}
-                className="glass-card rounded-2xl p-6 text-center"
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 mb-3">
-                  <Icon size={20} className="text-primary" />
-                </div>
-                <p className="text-2xl md:text-3xl font-bold text-foreground mb-1">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </motion.div>
-            );
-          })}
+          <div className="text-lg text-muted-foreground leading-relaxed space-y-6">
+            <p>
+              Zuup is a youth-led non-profit organization dedicated to creating opportunities for students and young people through education, innovation, leadership, and community-driven initiatives.
+            </p>
+            <p>
+              Founded by young changemakers, Zuup believes that talent exists everywhere, but opportunity does not. Our mission is to bridge that gap by providing access to workshops, mentorship, cohorts, hackathons, skill development programs, networking opportunities, and real-world experiences that help individuals grow into confident leaders and creators.
+            </p>
+            <p className="font-bold text-foreground">
+              Whether you're a student looking to learn, a volunteer looking to contribute, or an organization looking to create impact, Zuup provides a platform where ideas become action.
+            </p>
+          </div>
         </motion.div>
       </div>
 
-      {/* Values */}
+      {/* Vision & Mission */}
+      <div className="grid md:grid-cols-2 gap-8 mb-20">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="glass-card-strong rounded-3xl p-8 bg-blue-50/50"
+        >
+          <Target size={32} className="text-blue-500 mb-6" />
+          <h3 className="text-2xl font-bold text-foreground mb-4">Our Vision</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            To build India's most impactful youth-driven ecosystem where every student has access to the skills, mentorship, opportunities, and network needed to succeed.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="glass-card-strong rounded-3xl p-8 bg-primary/5"
+        >
+          <Heart size={32} className="text-primary mb-6" />
+          <h3 className="text-2xl font-bold text-foreground mb-4">Our Mission</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            To empower young people through education, innovation, leadership, and community, creating pathways for personal growth, career success, and social impact.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* What We Do */}
       <motion.div
-        className="text-center mb-12"
+        className="mb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
-          What Drives Us
-        </span>
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-          Our Core Values
+        <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">
+          What We Do
         </h3>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
-        {values.map((item, i) => {
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        {whatWeDo.map((item, i) => {
           const Icon = item.icon;
           return (
             <motion.div
@@ -121,17 +109,42 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card rounded-2xl p-7"
+              className="glass-card rounded-2xl p-8"
             >
-              <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <Icon size={20} className="text-primary" />
+              <div className="w-14 h-14 rounded-xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center mb-6">
+                <Icon size={28} className="text-primary" />
               </div>
-              <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+              <h4 className="text-xl font-bold text-foreground mb-3">{item.title}</h4>
+              <p className="text-muted-foreground text-sm leading-relaxed font-medium">{item.description}</p>
             </motion.div>
           );
         })}
       </div>
+
+      {/* By the Numbers */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="glass-card-strong rounded-3xl p-8 sm:p-12 bg-black text-white"
+      >
+        <h3 className="text-3xl sm:text-4xl font-bold mb-8 text-white">By the Numbers</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          {[
+            { label: "Students Impacted", value: "1,000+" },
+            { label: "Workshops & Events", value: "50+" },
+            { label: "Across India", value: "Multiple Cities" },
+            { label: "Leadership Team", value: "Youth-Led" },
+            { label: "Active Users", value: "3,000" },
+            { label: "Slack Community", value: "2,000+" },
+          ].map((stat, i) => (
+            <div key={i}>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">{stat.value}</div>
+              <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 };

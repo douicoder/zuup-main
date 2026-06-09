@@ -1,27 +1,30 @@
-import { createClient } from '@supabase/supabase-js';
-import { Database } from '@/types/supabase';
+// Dummy mock supabase client to prevent app crashes
+// since the backend has been deleted.
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const mockDb = {
+  select: () => mockDb,
+  order: () => Promise.resolve({ data: [], error: null }),
+  single: () => Promise.resolve({ data: null, error: null }),
+  insert: () => Promise.resolve({ data: null, error: null }),
+  update: () => Promise.resolve({ data: null, error: null }),
+  delete: () => mockDb,
+  eq: () => Promise.resolve({ data: null, error: null }),
+};
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing Supabase environment variables');
-}
-
-export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
+export const supabase = {
+  from: () => mockDb,
   auth: {
-    persistSession: true,
-    autoRefreshToken: true,
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signOut: () => Promise.resolve({ error: null }),
+    getUser: () => Promise.resolve({ data: { user: null }, error: null }),
+    signInWithPassword: () => Promise.resolve({ data: {}, error: null }),
+    signUp: () => Promise.resolve({ data: {}, error: null }),
+  },
+  storage: {
+    from: () => ({
+      upload: () => Promise.resolve({ error: null }),
+      getPublicUrl: () => ({ data: { publicUrl: '' } }),
+      remove: () => Promise.resolve({ error: null }),
+    })
   }
-});
-
-// Test the connection and storage access
-void (async () => {
-  try {
-    const { data: bucketList } = await supabase.storage.listBuckets();
-    console.log('Successfully connected to Supabase!');
-    console.log('Available buckets:', bucketList?.map(b => b.name));
-  } catch (error) {
-    console.error('Supabase connection error:', error);
-  }
-})();
+};

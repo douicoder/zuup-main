@@ -1,313 +1,219 @@
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Users, Award, Calendar, Heart, BookOpen, Lightbulb, Globe, Rocket, Star, Code, Palette, Video } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import FloatingBackground from "../components/FloatingBackground";
+import TransparentMoza from "../components/TransparentMoza";
+
+const StorySection = ({ 
+  title, 
+  content, 
+  mozaSrc, 
+  mozaAlt, 
+  reverse = false 
+}: { 
+  title: string, 
+  content: React.ReactNode, 
+  mozaSrc: string, 
+  mozaAlt: string, 
+  reverse?: boolean 
+}) => {
+  return (
+    <div className="min-h-screen flex items-center py-20 relative overflow-hidden border-b border-border/10">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 md:gap-24`}>
+          
+          {/* Moza Art Wrapper */}
+          <motion.div 
+            initial={{ opacity: 0, x: reverse ? 100 : -100, rotate: reverse ? 10 : -10 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            transition={{ duration: 1, type: "spring", bounce: 0.2 }}
+            viewport={{ once: true, margin: "-20%" }}
+            className="w-full md:w-1/2 flex justify-center relative"
+          >
+            <div className="w-[300px] h-[300px] md:w-[600px] md:h-[600px] relative z-10 group">
+              <TransparentMoza 
+                src={mozaSrc} 
+                alt={mozaAlt} 
+                className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" 
+              />
+            </div>
+            
+            {/* Soft background glow to make Moza pop without a box */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/10 blur-[100px] rounded-full pointer-events-none z-0" />
+          </motion.div>
+
+          {/* Typography Content Wrapper */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, margin: "-20%" }}
+            className="w-full md:w-1/2 z-20 text-center md:text-left"
+          >
+            <h2 
+              className="text-6xl md:text-[5.5rem] leading-[1.1] font-bold text-primary mb-8" 
+              style={{ fontFamily: "'Caveat', cursive", letterSpacing: "1px" }}
+            >
+              {title}
+            </h2>
+            <div className="space-y-6 text-2xl md:text-4xl text-foreground font-medium leading-tight tracking-tight">
+              {content}
+            </div>
+          </motion.div>
+          
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const OurStory = () => {
-  const impactMetrics = [
-  { label: "Youth Trained", value: "500+", icon: Users },
-  { label: "Skill Programs", value: "3", icon: Award },
-  { label: "Founded", value: "2024", icon: Calendar },
-  { label: "Partner NGOs", value: "10+", icon: Globe }];
-
-
-  const timelineEvents = [
-  {
-    year: "2024",
-    title: "The Spark",
-    description: "At just 16, our founder saw the digital divide first-hand. Kids with talent but no access. The idea for Zuup was born — not as charity, but as a launchpad.",
-    icon: Lightbulb
-  },
-  {
-    year: "Early 2025",
-    title: "Building the Foundation",
-    description: "Zuup officially became part of Zylon Labs. The team designed a curriculum covering graphic design, video editing, and coding — skills that translate directly into freelance income.",
-    icon: BookOpen
-  },
-  {
-    year: "March 2025",
-    title: "First Batch Launched",
-    description: "The first cohort of trainees began their journey. Within weeks, students were completing real client projects and earning their first income online.",
-    icon: Rocket
-  },
-  {
-    year: "2025",
-    title: "Research Published",
-    description: "Zuup's AI-powered skill-gap analysis methodology was published in IJRASET, validating our data-driven approach to digital empowerment.",
-    icon: Star
-  },
-  {
-    year: "2025+",
-    title: "Scaling Nationwide",
-    description: "Expanding to 10+ partner NGOs, hiring state heads across India, and building a self-sustaining ecosystem where trained youth become the next generation of mentors.",
-    icon: Globe
-  }];
-
-
-  const skills = [
-  { icon: Palette, name: "Graphic Design", desc: "Brand identity, social media, UI/UX — from Canva to Figma" },
-  { icon: Video, name: "Video Editing", desc: "Reels, YouTube content, client work — CapCut to Premiere" },
-  { icon: Code, name: "Web Development", desc: "HTML, CSS, JavaScript, React — building real products" }];
-
-
   return (
     <>
       <Helmet>
-        <title>Our Story — How Zuup Empowers Youth Through Digital Skills</title>
-        <meta name="description" content="Zuup is a teen-led NPO that trains underprivileged youth in graphic design, video editing, and coding. Learn our story of empowerment over charity." />
-        <meta name="keywords" content="Zuup, Zuup NPO, Zuup NGO, teen-led nonprofit, digital skills training, youth empowerment India, freelance training, zuup.dev" />
-        <link rel="canonical" href="https://zuup.dev/our-story" />
-        
-        <meta property="og:title" content="Our Story — How Zuup Empowers Youth Through Digital Skills" />
-        <meta property="og:description" content="From a 16-year-old's vision to a nationwide movement. Zuup trains underprivileged youth in real digital skills for real income." />
-        <meta property="og:url" content="https://zuup.dev/our-story" />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content="https://zuup.dev/og-image.png" />
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Our Story — Zuup: Empowerment Over Charity" />
-        <meta name="twitter:description" content="A teen-led NPO training underprivileged youth in digital skills. Empowerment over charity." />
-        <meta name="twitter:image" content="https://zuup.dev/og-image.png" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "Our Story — How Zuup Empowers Youth Through Digital Skills",
-            "author": {
-              "@type": "Organization",
-              "name": "Zuup",
-              "url": "https://zuup.dev"
-            },
-            "datePublished": "2024-01-01",
-            "dateModified": new Date().toISOString(),
-            "publisher": {
-              "@type": "Organization",
-              "name": "Zuup",
-              "url": "https://zuup.dev",
-              "logo": { "@type": "ImageObject", "url": "https://zuup.dev/og-image.png" }
-            },
-            "description": "How Zuup, a teen-led NPO, trains underprivileged youth in graphic design, video editing, and coding for freelance careers.",
-            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://zuup.dev/our-story" }
-          })}
-        </script>
+        <title>Our Story — The Honest Truth About Zuup</title>
+        <meta name="description" content="How Zuup started as a portfolio project and turned into a movement empowering youth." />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
-        <FloatingBackground />
+      {/* No Grid Background. Pure pitch black base. */}
+      <div className="min-h-screen bg-[#050505] relative overflow-hidden">
         <Navbar />
-        
-        <div className="max-w-5xl mx-auto px-4 pt-28 pb-20">
-          {/* Hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20">
 
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-4 block">Our Journey</span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-              From a Teen's Vision<br />
-              <span className="text-primary">To a Movement</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Zuup started with a simple belief: every young person deserves a shot at the digital economy — 
-              not through handouts, but through real skills that pay real money.
-            </p>
+        {/* Huge Hero Title Screen */}
+        <div className="h-[90vh] flex flex-col items-center justify-center text-center relative z-10 px-4">
+          <motion.div 
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-10 -left-10 w-[400px] h-[400px] opacity-40 pointer-events-none hidden md:block"
+          >
+            <TransparentMoza style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }} src="/mozatreasure.jpeg" alt="Treasure Moza" className="w-full h-full object-contain mix-blend-screen" />
           </motion.div>
 
-          {/* Impact Metrics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
-            {impactMetrics.map((metric, index) =>
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              className="glass-card rounded-2xl p-6 text-center">
-
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 mb-3">
-                  <metric.icon size={20} className="text-primary" />
-                </div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground">{metric.value}</div>
-                <div className="text-sm text-muted-foreground mt-1">{metric.label}</div>
-              </motion.div>
-            )}
-          </div>
-
-          {/* The Story */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card rounded-2xl p-8 md:p-12 mb-24">
-
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Heart size={20} className="text-primary" />
-              </div>
-              <h2 className="text-2xl font-bold text-foreground">Why Zuup Exists</h2>
-            </div>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                In India, millions of young people have smartphones but no idea how to turn them into income. 
-                They scroll through Instagram watching others succeed, not realising that the same phone in their 
-                pocket is a professional design studio, a video editing suite, and a coding environment.
-              </p>
-              <p>
-                Our founder saw this gap at 16 and refused to accept it. Not as a billionaire philanthropist 
-                writing cheques, but as a teenager who understood the digital world these kids lived in. The goal wasn't 
-                to build another NGO that hands out laptops and walks away — it was to build something that 
-                actually works.
-              </p>
-              <p>
-                Zuup's model is brutally simple: find talented youth through partner NGOs, teach them marketable 
-                digital skills in 8-12 weeks, connect them with freelance clients, and let their work speak for 
-                itself. No charity labels. No pity. Just professionals earning their keep.
-              </p>
-              <p>
-                The curriculum is built on real-world data. Zuup's AI-powered skill-gap analysis (published in IJRASET) 
-                identifies exactly which skills have the highest demand-to-supply ratio in the freelance market, 
-                ensuring every hour of training translates into earning potential.
-              </p>
-            </div>
+          <motion.div 
+            animate={{ y: [0, 20, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute top-20 -right-10 w-[350px] h-[350px] opacity-30 pointer-events-none hidden lg:block"
+          >
+            <TransparentMoza style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%)" }} src="/mozawithmagnifiyingglass.jpeg" alt="Magnifying Glass Moza" className="w-full h-full object-contain mix-blend-screen" />
           </motion.div>
-
-          {/* Timeline */}
-          <div className="mb-24">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-center mb-14">
-
-              <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">Timeline</span>
-              <h2 className="text-3xl font-bold text-foreground">The Journey So Far</h2>
-            </motion.div>
-
-            <div className="relative">
-              <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-border" />
-              
-              {timelineEvents.map((event, index) => {
-                const Icon = event.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`relative flex items-start mb-10 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`
-                    }>
-
-                    {/* Dot */}
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary ring-4 ring-background z-10 mt-1.5" />
-                    
-                    {/* Content */}
-                    <div className={`ml-14 md:ml-0 md:w-[45%] ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                      <div className="glass-card rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <Icon size={16} className="text-primary" />
-                          </div>
-                          <span className="text-xs font-bold text-primary uppercase tracking-wider">{event.year}</span>
-                        </div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{event.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{event.description}</p>
-                      </div>
-                    </div>
-                  </motion.div>);
-
-              })}
-            </div>
-          </div>
-
-          {/* Skills We Teach */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-24">
-
-            <div className="text-center mb-12">
-              <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">What We Teach</span>
-              <h2 className="text-3xl font-bold text-foreground">Skills That Pay Bills</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-5">
-              {skills.map((skill, i) => {
-                const Icon = skill.icon;
-                return (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="glass-card rounded-2xl p-7 text-center group"
-                    whileHover={{ y: -4 }}>
-
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-5 group-hover:bg-primary/15 transition-colors">
-                      <Icon size={24} className="text-primary" />
-                    </div>
-                    <h3 className="text-lg font-bold text-foreground mb-2">{skill.name}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{skill.desc}</p>
-                  </motion.div>);
-
-              })}
-            </div>
-          </motion.div>
-
-          {/* Founder Quote */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card-strong rounded-2xl p-10 md:p-14 text-center mb-24">
-
-            <blockquote className="text-xl md:text-2xl font-medium text-foreground leading-relaxed mb-6 italic">
-              "We don't want to be the organisation that gives people fish. We want to be the one that 
-              makes them fishermen — and then helps them start a fishing business."
-            </blockquote>
-            <div className="text-primary font-semibold">Zuup Founder</div>
-            <div className="text-sm text-muted-foreground">Zuup · Teen-Led NPO</div>
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center">
-
-            <h2 className="text-3xl font-bold text-foreground mb-4">Join the Movement</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-              Whether you want to volunteer, partner with us, or sponsor a trainee — there's a role for you in building
-              a more digitally inclusive future.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/apply"
-                className="px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-primary/20">
-
-                Apply to Volunteer
-              </a>
-              <a
-                href="/#contact"
-                className="px-8 py-3.5 glass-card-strong text-foreground font-semibold rounded-xl hover:shadow-md transition-all">
-
-                Get in Touch
-              </a>
-            </div>
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="text-[15vw] sm:text-8xl md:text-[10rem] font-bold text-foreground leading-[0.9]"
+            style={{ fontFamily: "'Caveat', cursive", letterSpacing: "2px" }}
+          >
+            The Honest <br/> <span className="text-primary underline decoration-wavy underline-offset-[16px]">Truth.</span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mt-12 text-3xl md:text-5xl text-muted-foreground font-medium max-w-4xl"
+            style={{ fontFamily: "'Caveat', cursive" }}
+          >
+            Scroll to see how a selfish portfolio project became a global movement.
+          </motion.p>
+          
+          {/* Scroll Indicator */}
+          <motion.div 
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-10"
+          >
+            <div className="w-[2px] h-24 bg-gradient-to-b from-primary/50 to-transparent mx-auto rounded-full" />
           </motion.div>
         </div>
-        
+
+        {/* Story Section 1 */}
+        <StorySection 
+          title="How it actually started."
+          mozaSrc="/moza-laptop-inverted.png"
+          mozaAlt="Moza building portfolio"
+          content={
+            <>
+              <p>Let's be completely real. Zuup wasn't born to save the world.</p>
+              <p className="text-muted-foreground">It started in November 2024 with one highly selfish goal: <strong className="text-foreground">portfolio building.</strong></p>
+              <p>But then we saw the raw talent on the ground rotting away without guidance. That resume booster turned into an absolute obsession.</p>
+            </>
+          }
+        />
+
+        {/* Story Section 2 */}
+        <StorySection 
+          title="Killing the dependency."
+          mozaSrc="/moza-cool-inverted.png"
+          mozaAlt="Moza acting cool"
+          reverse
+          content={
+            <>
+              <p>Standard NGOs hand out free stuff. <span className="text-muted-foreground">That just creates a culture of dependency.</span></p>
+              <p>We scrapped the charity model. We started teaching raw, high-income freelance skills instead.</p>
+              <a href="https://doi.org/10.22214/ijraset.2025.73265" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white transition-colors underline decoration-wavy mt-6 inline-block">
+                We even published a peer-reviewed paper on it.
+              </a>
+            </>
+          }
+        />
+
+        {/* Story Section 3 */}
+        <StorySection 
+          title="Tech education is a joke."
+          mozaSrc="/moza-soldering-inverted.png"
+          mozaAlt="Moza Soldering PCB"
+          content={
+            <>
+              <p>We met 9-CGPA college grads who were completely unhirable.</p>
+              <p className="text-muted-foreground">Schools were teaching useless "block coding" and calling it an education.</p>
+              <p>So we launched the <strong className="text-foreground">School Program</strong>. We teach real coding, PCB making, and hardcore hardware engineering.</p>
+            </>
+          }
+        />
+
+        {/* Story Section 4 */}
+        <StorySection 
+          title="Building an empire."
+          mozaSrc="/moza-rocket-skateboard-inverted.png"
+          mozaAlt="Moza Rocket Expansion"
+          reverse
+          content={
+            <>
+              <p>Things exploded. We launched massive events and built our own SaaS ecosystem.</p>
+              <p className="text-muted-foreground">Our mission? Build India's biggest community of over <strong className="text-foreground">100,000</strong> builders.</p>
+              <p>And we aren't stopping there. We are already active on the ground in <strong className="text-foreground">Giza (Egypt)</strong> and <strong className="text-foreground">Dubai</strong>.</p>
+            </>
+          }
+        />
+
+        {/* Massive Final CTA */}
+        <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-4 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative z-10 flex flex-col items-center"
+          >
+            <h2 className="text-[12vw] sm:text-8xl md:text-[8rem] font-bold text-foreground mb-16 leading-[0.9]" style={{ fontFamily: "'Caveat', cursive", letterSpacing: "1px" }}>
+              Ready for the madness?
+            </h2>
+            <a
+              href="/join"
+              className="group inline-flex justify-center items-center gap-6 px-12 md:px-16 py-8 bg-primary text-primary-foreground font-bold text-3xl md:text-5xl rounded-[3rem] shadow-[8px_8px_0px_0px_rgba(255,255,255,0.2)] hover:-translate-y-4 hover:shadow-[20px_20px_0px_0px_rgba(255,255,255,0.3)] hover:bg-primary/90 transition-all duration-300"
+              style={{ fontFamily: "'Caveat', cursive", letterSpacing: "1px" }}
+            >
+              Join the Movement
+              <ArrowRight size={48} className="hidden sm:block group-hover:translate-x-6 transition-transform duration-300" />
+            </a>
+          </motion.div>
+        </div>
+
         <Footer />
       </div>
-    </>);
-
+    </>
+  );
 };
 
 export default OurStory;
