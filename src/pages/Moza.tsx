@@ -39,6 +39,16 @@ const mozas = [
   { name: "Empower NGO", src: "/moza_empower_ngo_1780977248704.png" },
   { name: "Empower Partner", src: "/moza_empower_partner_1780977238040.png" },
   { name: "Empower Video", src: "/moza_empower_video_1780977200762.png" },
+  // New Mozas
+  { name: "Job Celebrating", src: "/moza-job-celebrating.png" },
+  { name: "Job Desk", src: "/moza-job-desk.png" },
+  { name: "Job Detective", src: "/moza-job-detective.png" },
+  { name: "Job Megaphone", src: "/moza-job-megaphone.png" },
+  { name: "Software", src: "/moza-software.png" },
+  { name: "Teaching 2", src: "/moza-teaching.png" },
+  { name: "Events Hero", src: "/moza_events_hero_1780978768456.png" },
+  { name: "Dubai", src: "/moza_dubai_1780977945427.png" },
+  { name: "Egypt", src: "/moza_egypt_1780977933756.png" },
 ];
 
 const Moza = () => {
