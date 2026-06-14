@@ -31,9 +31,25 @@ const JobAdmin = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // We use the custom auth domain
+        // 1. Check for token in URL (This completely bypasses cross-site cookie blockers!)
+        const params = new URLSearchParams(window.location.search);
+        const urlToken = params.get('token');
+        if (urlToken) {
+          localStorage.setItem('zuup_session_token', urlToken);
+          // Clean the URL so the token isn't visible to the user
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        const storedToken = localStorage.getItem('zuup_session_token');
+        const headers: HeadersInit = {};
+        if (storedToken) {
+          headers['Authorization'] = `Bearer ${storedToken}`;
+        }
+
+        // 2. Fetch /api/me. It will use the Bearer token first, and fallback to cookies if present.
         const res = await fetch('https://auth.zuup.dev/api/me', {
-          credentials: 'include', // MUST BE INCLUDE to send the SSO cookie!
+          credentials: 'include',
+          headers
         });
         
         if (res.ok) {
