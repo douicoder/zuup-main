@@ -290,6 +290,86 @@ app.get('/login', (c) => {
   return c.html(renderLoginUI(error, siteName));
 });
 
+// ==========================================
+// 🛠️ "WEIRD TECHNICAL" ROOT LANDING PAGE
+// ==========================================
+app.get('/', (c) => c.html(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuup Identity Infrastructure</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #33C481;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 2rem;
+            margin: 0;
+            overflow: hidden;
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 9999;
+            position: absolute;
+            pointer-events: none;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(51,196,129,0.1) 50%, rgba(0,0,0,0) 100%);
+            opacity: 0.1;
+            animation: scanline 6s linear infinite;
+        }
+        @keyframes scanline {
+            0% { top: -100px; }
+            100% { top: 100vh; }
+        }
+        .header { font-size: 2rem; font-weight: bold; margin-bottom: 2rem; color: #F04F67; text-shadow: 0 0 10px rgba(240,79,103,0.5); }
+        .log { margin: 0.5rem 0; opacity: 0; animation: fadein 0.1s forwards; }
+        .blink { animation: blink 1s step-end infinite; }
+        @keyframes fadein { to { opacity: 1; } }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="header">ZUUP IDENTITY INFRASTRUCTURE [v2.4.0]</div>
+    <div id="logs"></div>
+    <div style="margin-top:2rem;">> <span class="blink">_</span></div>
+    
+    <script>
+        const messages = [
+            "[SYSTEM] Initializing Zuup SSO Gateway...",
+            "[OK] Database connection established.",
+            "[OK] Loaded 4,815 secure identities.",
+            "[WARN] Unauthorized telemetry ping detected. Dropping packet.",
+            "[INFO] OAuth 2.1 Provider running on secure edge nodes.",
+            "[OK] Moza Protocol is ACTIVE.",
+            "...",
+            "Routing traffic to appropriate Zuup services.",
+            "System is fully operational. Awaiting authentication requests."
+        ];
+        
+        let i = 0;
+        const container = document.getElementById('logs');
+        
+        function appendLog() {
+            if (i < messages.length) {
+                const el = document.createElement('div');
+                el.className = 'log';
+                el.innerText = '> ' + messages[i];
+                if (messages[i].includes('[WARN]')) el.style.color = '#FDBF2A';
+                if (messages[i].includes('[OK]')) el.style.color = '#2D9CDB';
+                container.appendChild(el);
+                i++;
+                setTimeout(appendLog, Math.random() * 800 + 200);
+            }
+        }
+        setTimeout(appendLog, 500);
+    </script>
+</body>
+</html>
+`));
+
 const initSupabase = (c: any) => {
   // Gracefully handle missing variables locally so Hono doesn't crash on init
   const url = c.env.SUPABASE_URL || 'https://placeholder.supabase.co';

@@ -28,17 +28,28 @@ const JobAdmin = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    const storedAuth = localStorage.getItem('adminUser');
-    if (storedAuth) {
-      setIsAuthenticated(true);
-    }
+    const checkAuth = async () => {
+      try {
+        // We use the deployed auth worker URL. If local, you can change this to http://localhost:8787
+        const res = await fetch('https://zuup-auth-worker.zuup.workers.dev/api/me', {
+          credentials: 'omit', // In production, change this to 'include' for cross-domain cookies
+        });
+        
+        if (res.ok) {
+          setIsAuthenticated(true);
+          fetchJobs();
+        } else {
+          // Redirect to central auth
+          const redirectUrl = window.location.href;
+          window.location.href = `https://zuup-auth-worker.zuup.workers.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
+        }
+      } catch (err) {
+        const redirectUrl = window.location.href;
+        window.location.href = `https://zuup-auth-worker.zuup.workers.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
+      }
+    };
+    checkAuth();
   }, []);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchJobs();
-    }
-  }, [isAuthenticated]);
 
   const fetchJobs = async () => {
     setLoading(true);
