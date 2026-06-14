@@ -10,6 +10,7 @@ import { Job } from './Careers';
 
 const JobAdmin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -39,17 +40,36 @@ const JobAdmin = () => {
           setIsAuthenticated(true);
           fetchJobs();
         } else {
-          // Redirect to central auth
-          const redirectUrl = window.location.href;
-          window.location.href = `https://auth.zuup.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
+          // DO NOT redirect immediately to avoid infinite loops during debugging!
+          console.error("Auth check failed:", res.status, await res.text());
+          setAuthError("You are not authenticated. Please log in.");
         }
       } catch (err) {
-        const redirectUrl = window.location.href;
-        window.location.href = `https://auth.zuup.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
+        console.error("Auth fetch crashed:", err);
+        setAuthError("Failed to reach auth server.");
       }
     };
     checkAuth();
   }, []);
+
+  if (authError) {
+    return (
+      <div className="min-h-screen bg-bg text-white flex flex-col items-center justify-center p-4">
+        <div className="bg-card p-8 rounded-2xl border border-border text-center max-w-md w-full">
+          <h2 className="text-2xl font-bold mb-4 text-red-400">Authentication Required</h2>
+          <p className="text-muted mb-6">{authError}</p>
+          <button 
+            onClick={() => {
+              window.location.href = `https://auth.zuup.dev/login?redirect_to=${encodeURIComponent(window.location.href)}`;
+            }}
+            className="w-full py-3 bg-primary hover:bg-primaryHover text-white rounded-xl font-bold transition-colors"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const fetchJobs = async () => {
     setLoading(true);
