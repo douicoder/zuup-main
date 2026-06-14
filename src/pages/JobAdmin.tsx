@@ -30,8 +30,8 @@ const JobAdmin = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // We use the deployed auth worker URL. If local, you can change this to http://localhost:8787
-        const res = await fetch('https://zuup-auth-worker.zuup.workers.dev/api/me', {
+        // We use the custom auth domain
+        const res = await fetch('https://auth.zuup.dev/api/me', {
           credentials: 'omit', // In production, change this to 'include' for cross-domain cookies
         });
         
@@ -41,11 +41,11 @@ const JobAdmin = () => {
         } else {
           // Redirect to central auth
           const redirectUrl = window.location.href;
-          window.location.href = `https://zuup-auth-worker.zuup.workers.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
+          window.location.href = `https://auth.zuup.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
         }
       } catch (err) {
         const redirectUrl = window.location.href;
-        window.location.href = `https://zuup-auth-worker.zuup.workers.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
+        window.location.href = `https://auth.zuup.dev/login?redirect_to=${encodeURIComponent(redirectUrl)}`;
       }
     };
     checkAuth();
