@@ -53,6 +53,15 @@ const JobAdmin = () => {
         });
         
         if (res.ok) {
+          // 3. Inject the SSO token into the local Supabase client so admin database operations work!
+          if (storedToken) {
+            // Provide the token for subsequent database operations
+            await supabase.auth.setSession({
+              access_token: storedToken,
+              refresh_token: '' // We don't have a refresh token from the Auth Worker yet, but this is enough to authorize current requests
+            });
+          }
+          
           setIsAuthenticated(true);
           fetchJobs();
         } else {
